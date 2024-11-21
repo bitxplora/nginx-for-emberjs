@@ -14,12 +14,12 @@
         index       index.html index.htm;
 
         # log files
-        access_log  /var/log/nginx/bitstream.access.log;
-        error_log   /var/log/nginx/bitstream.error.log;
+        access_log  /var/log/nginx/abs.bitstream.access.log;
+        error_log   /var/log/nginx/abs.bitstream.error.log;
 
         # ssl files
-        ssl_certificate /etc/letsencrypt/live/bitstream.ng/fullchain.pem; # managed by Certbot
-        ssl_certificate_key /etc/letsencrypt/live/bitstream.ng/privkey.pem; # managed by Certbot
+        ssl_certificate /etc/letsencrypt/live/abs.bitstream.ng/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/abs.bitstream.ng/privkey.pem; # managed by Certbot
         include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
         ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
