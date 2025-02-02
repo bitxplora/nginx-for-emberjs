@@ -1,0 +1,41 @@
+#### File: nginx.conf
+
+    ## Nginx Production Https Ember Server Configuration
+
+    ## https site##
+    server {
+       # listen [::]:443 ssl ipv6only=on; # managed by Certbot
+        listen 443 ssl; # managed by Certbot
+
+        server_name luckycast.olutayo.dev;
+#
+        #root        /usr/share/nginx/html;
+        root        /var/www/luckycast.olutayo.dev/html;
+        index       index.html index.htm;
+
+        # log files
+        access_log  /var/log/nginx/luckycast.olutayo.access.log;
+        error_log   /var/log/nginx/luckycast.olutayo.error.log;
+
+        # ssl files
+        ssl_certificate /etc/letsencrypt/live/luckycast.olutayo.dev/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/luckycast.olutayo.dev/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+        keepalive_timeout  120;
+
+        # Strict Transport Security
+        add_header Strict-Transport-Security max-age=2592000;
+
+        # proxy buffers
+        proxy_buffers 16 64k;
+        proxy_buffer_size 128k;
+
+        ## default location ##
+        location / {
+            include /etc/nginx/mime.types;
+            try_files $uri $uri/ /index.html?/$request_uri;
+        }
+    
+}
